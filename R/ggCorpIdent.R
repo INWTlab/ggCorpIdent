@@ -178,7 +178,7 @@ ggCorpIdent <- function(base_size = 12,
 #' @export
 scale_colour_discrete <- function (...) {
   discrete_scale("colour", "brewer", palette = paletteFun, ...)
-  }
+}
 
 
 #' Evenly spaced INWT colours for discrete data
@@ -188,7 +188,7 @@ scale_colour_discrete <- function (...) {
 #' @export
 scale_fill_discrete <- function (...) {
   discrete_scale("fill", "brewer", palette = paletteFun, ...)
-  }
+}
 
 
 #' Add INWT Logo
