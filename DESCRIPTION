@@ -1,0 +1,21 @@
+Package: ggCorpIdent
+Title: INWTlab wrapper for ggplot2 to create plots matching a corporate identity
+Version: 0.9.1
+Author: INWT Statistics GmbH
+Authors@R: c(person("Mira Céline", "Klein", email = "mira.klein@inwt-statistics.de", role = c("aut")),
+             person("Steffen", "Wagner", email = "steffen.wagner@inwt-statistics.de", role = c("aut", "cre")))
+Description: This R package provides a wrapper for ggplot2 suitable for building business
+  graphs in your corporate design. A logo can be added to the graph and you can easily customize colors, fonts, etc..
+  Since customization takes place on a global level, the ggplot syntax itself remains unchanged and doesn't need to be touched. 
+BugReports: https://github.com/INWTlab/ggCorpIdent/issues
+URL: http://github.com/INWTlab/ggCorpIdent
+Depends: R (>= 3.5.0),
+    extrafont (>= 0.17),
+    ggplot2 (>= 3.0.0)
+Imports: png(>= 0.1.7),
+Suggests: extrafontdb (>= 1.0), knitr, rmarkdown
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
+VignetteBuilder: knitr

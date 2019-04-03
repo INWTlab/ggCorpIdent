@@ -1,0 +1,139 @@
+---
+title: "Stylize ggplot2 Graphics in Your Corporate Design"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette: Stylize ggplot2 Graphics in Your Corporate Design With ggCorpIdent}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+This is the add-on to our recently published [R Markdown template for business reports](https://github.com/INWTlab/ireports). Since we're working with `ggplot2` on a daily basis and use it in nearly every our projects, we designed a ggplot2 theme in our corporate design. That is, it uses our font, coporate colors and our logo in the background of the plot. We ourselves find this a very handy thing, because the style is "switched on and off" with a *single* function call, without having to touch the ggplot syntax itself. With the package `ggCorpIdent` we'd like to share this functionality with you, so that you can easily adopt your individual corporate style in ggplot2 graphics. This documents leads through the main styling opportunities. 
+
+To use the default `ggCorpIdent` theme we load the package and call the function `ggCorpIdent()` **before** the actual plot(s). If you use this to style all graphics in an R Markdown report for example, you can call `ggCorpIdent()` in a hidden code chunk (e.g. the setup) and with this all ggplot2 graphics will be using the individual style. Hence, the corporate style is set globally and the output is produced by standard ggplot2 syntax. 
+
+```{r dpi = 100, fig.width = 7, fig.height = 5}
+# default `ggCorpIdent` settings
+# Initialisation of `ggCorpIdent`
+library(ggCorpIdent)
+
+ggCorpIdent()
+ggplot(iris,
+       aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+  geom_point() +
+  labs(title = "Another Nice ggplot2 Graphic",
+       subtitle = "With Customized Style")
+```
+
+And this is basically all you need to do. Within `ggCorpIdent()` you can define your own style via a set of arguments (for details see `?ggCorpIdent`). 
+Let's see some example configurations. 
+
+## Colors
+Via the `colors` argument you can overwrite the default colors with your own corporate colors. 
+```{r dpi = 100, fig.width = 7, fig.height = 5}
+# usage of different font and colors
+myCorpColors <- c("dodgerblue4", "violetred1", "mintcream")
+ggCorpIdent(colors = myCorpColors)
+
+ggplot(iris,
+       aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+  geom_point() +
+  labs(title = "Another Nice ggplot2 Graphic With Changed Colors")
+```
+
+You can specify as many colors as you like. However, if more colors are needed than you specify, the given colors are interpolated. 
+```{r dpi = 100, fig.width = 7, fig.height = 5}
+# if more than the specified colors are required, the color values are interpolated:
+
+iris$Species <- paste("Species", sample(1:6, size = nrow(iris), replace = TRUE))
+
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+  geom_point() +
+  labs(title = "Another Nice ggplot2 Graphic With Interpolated Colors")
+
+```
+
+## Fonts (Windows)
+The font or the font family, respectively, for the text elements in the plot can be changed via the argument `base_family`, you might already know this from the theme functions of `ggplot2` (e.g. `theme_bw()`). On a windows computer a font has to meet two conditions in order to be used in your plot. First of all, it has to be a system font. You can simply drag and drop fonts in the system fonts folder in order to make them one. When it is a system font you need to import the font into the package via `font_import()` imported from the package `extrafont`. Let me demonstrate this. In the ttf folder of this package you find the 4 ttf files for the lora font. Drag and drop these 4 files into the directory `C:\Windows\Fonts`. To now make your system fonts available for use with this package you can import them via the following command. This could take a minute or two, though. 
+
+```{r}
+# font_import()
+```
+
+You can use the `pattern` argument to be more specific about which fonts to be imported. 
+When this is done you can check via 
+
+```{r}
+fonts()
+```
+which fonts are available for you to use. Pick the one you want to use - in this case it is Lora - and call it in the function `ggCorpIdent` in the `base_family` argument. Then print the previous plot again. And as you can see, the font has changed to Lora! 
+
+```{r dpi = 100, fig.width = 7, fig.height = 5}
+ggCorpIdent(base_family = "Lora",
+            colors = myCorpColors)
+ggplot(iris,
+       aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+  geom_point() +
+  labs(title = "Another Nice ggplot2 Graphic With Customized Font")
+
+```
+
+## Fonts (Linux)
+On a linux machine you can use system fonts just the same way as described for a windows machine. As soon as you want to use a font that is not a system font, you need to install it on your system, too. Here is a link on how to install a font in ubuntu, for example: https://wiki.ubuntu.com/Fonts.
+Then you import the font into the package via `font_import()` and you'll be ready to use it. 
+
+## Logo
+You can add a logo **within** the plot. You can set the position, scale the logo and control for its transparency. In case you don't want to include the logo (anymore), set the argument `logo` to `NULL`. 
+
+```{r dpi = 100, fig.width = 7, fig.height = 5}
+# usage of coprporate logo
+logoFromPackage <- system.file("logo/logo_INWT.png", 
+                               package = "ggCorpIdent", 
+                               mustWork = TRUE)
+ggCorpIdent(colors = myCorpColors,
+            base_family = "Lora",
+            logo = logoFromPackage,
+            logoPosition = "bottomright",
+            logoSize = 0.4,
+            logoTransparency = 0.5)
+
+ggplot(iris,
+       aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+  geom_point() +
+  labs(title = "What a Nice, Customized and Branded ggplot2 Graphic",
+       subtitle = "With Custom Colors, Font and Logo")
+```
+
+There is currently just one exception, the logo can **not** be used in combination with `coord_polar()`. In this very special case
+use the original `ggplot2::ggplot` function and not the `ggCorpIdent::ggplot` wrapper function:
+
+```{r dpi = 100, fig.width = 7, fig.height = 5}
+ggplot2::ggplot(iris,
+                aes(x = Species, fill = Species)) +
+  geom_bar() +
+  coord_polar() +
+  theme(axis.text.x = element_blank())
+```
+
+## Switch off
+It is quite easy to switch the styling off again and reset the default ggplot2 appearance of your graphics. 
+
+```{r dpi = 100, fig.width = 7, fig.height = 5}
+# detach package `ggCorpIdent` and reset theme to standard to obtain 
+# default ggplot2 output with identical(!) syntax:
+detach("package:ggCorpIdent")
+theme_set(theme_gray())
+
+ggplot(iris,
+       aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+  geom_point() +
+  labs(title = "The Standard Nice ggplot2 Graphic",
+       subtitle = "Detaching `ggCorpIdent` is Sufficient to get Standard Output Back")
+```
+
