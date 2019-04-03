@@ -5,3 +5,6 @@
 
 ## About
 ggCorpIdent is a package for customizing ggplot2 graphics in R easily and without touching the plot code itself. It lets you use custom colors in the plot, which are interpolated if you have not specified as much colors as needed. You can add custom fonts for the text elements within the plot and embed your corporate logo. 
+
+<img src="man/figures/INWTlab_ggCorpIdent_plot.png" width="700" align="center"/>
+
