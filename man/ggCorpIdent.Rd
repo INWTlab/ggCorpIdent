@@ -30,7 +30,7 @@ ggCorpIdent(base_size = 12, base_family = "Lato",
 \item{stripTextColor}{color for strip text}
 
 \item{colors}{vector with corporate colors used for geoms; the colors are used
-according their position in \code{colors}; if mor colors are required, values 
+according to their position in \code{colors}; if more colors are required, the values
 of \code{colors} will be interpolated via \code{\link[grDevices:colorRamp]{colorRampPalette}}.}
 
 \item{logo}{filename for logo; the file has to be \code{PNG}.}
@@ -43,13 +43,13 @@ of \code{colors} will be interpolated via \code{\link[grDevices:colorRamp]{color
 }
 \description{
 Sets a pre-defined theme as the standard ggplot theme via
-\code{\link[ggplot2:theme_get]{theme_set}} and \code{\link[ggplot2:ggtheme]{theme_bw}}. In addtion 
-to the specification of colors and fonts, a corporate logo (format: PNG) can be 
+\code{\link[ggplot2:theme_get]{theme_set}} and \code{\link[ggplot2:ggtheme]{theme_bw}}. In addition
+to the specification of colors and fonts, a corporate logo (format: PNG) can be
 specified to serve as watermark in ggplot graphics.
 }
 \details{
-The location may be specified by a single keyword from the 
-list \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, 
+The location may be specified by a single keyword from the
+list \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"},
 \code{"topleft"}, \code{"top"}, \code{"topright"}, \code{"right"} and \code{"center"}.
 }
 \examples{

@@ -1,8 +1,8 @@
 #' Set Corporate Identity Theme for ggplot2 graphics
 #'
 #' @description Sets a pre-defined theme as the standard ggplot theme via
-#' \code{\link[ggplot2:theme_get]{theme_set}} and \code{\link[ggplot2:ggtheme]{theme_bw}}. In addtion 
-#' to the specification of colors and fonts, a corporate logo (format: PNG) can be 
+#' \code{\link[ggplot2:theme_get]{theme_set}} and \code{\link[ggplot2:ggtheme]{theme_bw}}. In addition
+#' to the specification of colors and fonts, a corporate logo (format: PNG) can be
 #' specified to serve as watermark in ggplot graphics.
 #' @inheritParams ggplot2::theme_bw
 #' @param textColor text color for axis, labs, title and subtitle
@@ -12,14 +12,14 @@
 #' @param panelGridMajorColor color for panel grid major
 #' @param stripTextColor color for strip text
 #' @param colors vector with corporate colors used for geoms; the colors are used
-#' according their position in \code{colors}; if mor colors are required, values 
+#' according to their position in \code{colors}; if more colors are required, the values
 #' of \code{colors} will be interpolated via \code{\link[grDevices:colorRamp]{colorRampPalette}}.
 #' @param logo filename for logo; the file has to be \code{PNG}.
 #' @param logoSize numeric for logo rescaling
 #' @param logoPosition location of logo. See 'Details'.
 #' @param logoTransparency numeric alpha value to adjust logo transparency
-#' @details The location may be specified by a single keyword from the 
-#' list \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, 
+#' @details The location may be specified by a single keyword from the
+#' list \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"},
 #' \code{"topleft"}, \code{"top"}, \code{"topright"}, \code{"right"} and \code{"center"}.
 #' @examples
 #' \dontrun{
@@ -49,7 +49,7 @@
 #'   geom_point()
 #' }
 #' @export
-ggCorpIdent <- function(base_size =12,
+ggCorpIdent <- function(base_size = 12,
                         base_family = "Lato",
                         textColor = "#2b4894",
                         panelBackgroundColor = "#d4dbde",
@@ -58,8 +58,8 @@ ggCorpIdent <- function(base_size =12,
                         panelGridMajorColor = "white",
                         stripTextColor = "white",
                         colors = c("#2b4894",
-                                   "#068587", 
-                                   "#F2B134", 
+                                   "#068587",
+                                   "#F2B134",
                                    "#ED553B",
                                    "#4FB99F"),
                         logo = NULL,
@@ -67,7 +67,7 @@ ggCorpIdent <- function(base_size =12,
                         logoSize = 1,
                         logoTransparency = 0.2){
   
-  if(!base_family %in% fonts()) {
+  if (!base_family %in% fonts()) {
     message("Font family `", base_family, "` not available. font family remains unchanged.\n",
             "Pleae use `extrafont::font_import` to install required fonts first.\n", sep = "")
     theme_set(
@@ -85,7 +85,7 @@ ggCorpIdent <- function(base_size =12,
                                           margin = margin(b = 0.2, unit = "cm"),
                                           face = "bold"),
                 plot.subtitle = element_text(colour = textColor,
-                                             hjust =0,
+                                             hjust = 0,
                                              margin = margin(b = 0.2, unit = "cm"),
                                              face = "italic"),
                 axis.ticks.x = element_line(colour = tickColor),
@@ -102,11 +102,14 @@ ggCorpIdent <- function(base_size =12,
                 axis.text.y = element_text(colour = textColor),
                 legend.text = element_text(colour = textColor),
                 legend.title = element_text(colour = textColor),
-                legend.key = element_rect(size = 2, fill = panelBackgroundColor, color = legendKeyColor),
+                legend.key = element_rect(size = 2,
+                                          fill = panelBackgroundColor,
+                                          color = legendKeyColor),
                 legend.key.size = unit(1.5, 'lines'),
                 panel.grid.major = element_line(colour = panelGridMajorColor),
                 panel.grid.minor = element_blank(),
-                panel.background = element_rect(fill = panelBackgroundColor, colour = panelBackgroundColor),
+                panel.background = element_rect(fill = panelBackgroundColor,
+                                                colour = panelBackgroundColor),
                 panel.border = element_rect(colour = panelBackgroundColor, fill = NA),
                 strip.background = element_rect(fill = textColor, colour = textColor),
                 strip.text = element_text(colour = stripTextColor, face = "bold")
@@ -154,10 +157,10 @@ ggCorpIdent <- function(base_size =12,
   
   
   
-  if(!is.null(logo)){
+  if (!is.null(logo)){
     
     # Store logo information in options
-    if(!is.null(formerFileName <- getOption("ggCorpIdentLogoFilename")) && formerFileName != logo){
+    if (!is.null(formerFileName <- getOption("ggCorpIdentLogoFilename")) && formerFileName != logo){
       message("Former logo `", formerFileName, "` will be replaced with `", logo, "`.\n", sep = "")
     }
     options(ggCorpIdentLogoFilename = logo,
@@ -174,7 +177,8 @@ ggCorpIdent <- function(base_size =12,
 #' @param ... arguments passed to \code{\link[ggplot2]{discrete_scale}}
 #' @export
 scale_colour_discrete <- function (...) {
-  discrete_scale("colour", "brewer", palette = paletteFun, ...)}
+  discrete_scale("colour", "brewer", palette = paletteFun, ...)
+  }
 
 
 #' Evenly spaced INWT colours for discrete data
@@ -183,7 +187,8 @@ scale_colour_discrete <- function (...) {
 #' @param ... arguments passed to \code{\link[ggplot2]{discrete_scale}}
 #' @export
 scale_fill_discrete <- function (...) {
-  discrete_scale("fill", "brewer", palette = paletteFun, ...)}
+  discrete_scale("fill", "brewer", palette = paletteFun, ...)
+  }
 
 
 #' Add INWT Logo
@@ -203,7 +208,9 @@ scale_fill_discrete <- function (...) {
 #' \code{"topleft"}, \code{"top"}, \code{"topright"}, \code{"right"}, \code{"center"}
 #' and \code{"full"}. Setting \code{"full"} corresponds to \code{addLogo(position = "full", size = 1)}.
 #' \code{"deafult")} ist die Verwendung des Logos wie auf der Vorderseite unserer Visitenkarten.
-addLogo <- function(position = getOption("ggCorpIdentLogoPosition"), alpha = 0.1, size = getOption("ggCorpIdentLogoSize")){
+addLogo <- function(position = getOption("ggCorpIdentLogoPosition"),
+                    alpha = 0.1,
+                    size = getOption("ggCorpIdentLogoSize")){
   
   # Vorberechung der Positionen
   min <- 0
@@ -232,8 +239,8 @@ addLogo <- function(position = getOption("ggCorpIdentLogoPosition"), alpha = 0.1
                               size = size),
                 bottomleft = list(x = left, y = bottom, just = c(0, 0),
                                   size = size),
-                bottomright = list(x = right, 
-                                   y = bottom, 
+                bottomright = list(x = right,
+                                   y = bottom,
                                    just = c(1, 0),
                                    size = size),
                 right = list(x = right, y = center, just = c(1, 0.5),
@@ -276,7 +283,6 @@ addLogo <- function(position = getOption("ggCorpIdentLogoPosition"), alpha = 0.1
 ggplot <- function(...,
                    logo = getOption("ggCorpIdentLogoFilename"),
                    logoParams = list()) {
-  
   if (!is.null(logo)) {
     ggplot2::ggplot(...) + do.call(addLogo, logoParams)
   } else {
@@ -285,7 +291,7 @@ ggplot <- function(...,
 }
 
 
-#' color palette
+#' Color palette
 #'
 #' @description Vector of color codes. If the number of requested colors
 #' exceeds the number of available colors, interpolated colors are added.
@@ -293,9 +299,7 @@ ggplot <- function(...,
 #' @param x integer: desired number of colors
 #' @export
 paletteFun <- function(x) {
-  
   colors <- getOption("ggCorpIdentColors")
-  
   if (x > length(colors)) colors <- colorRampPalette(colors)(x)
   return(colors[1:x])
 }
