@@ -1,7 +1,7 @@
 # ggCorpIdent
 
-![License](https://img.shields.io/github/license/INWTlab/ggCorpIdent.svg?color=%2393bb51&style=popout)
-![Twitter](https://img.shields.io/twitter/follow/INWT_Statistics.svg?label=Follow%20us%21&style=social)
+[![License](https://img.shields.io/github/license/INWTlab/ggCorpIdent.svg?color=%2393bb51&style=popout)](https://www.gnu.org/licenses/gpl-3.0)
+[![Twitter](https://img.shields.io/twitter/follow/INWT_Statistics.svg?label=Follow%20us%21&style=social)](https://twitter.com/INWT_Statistics)
 ![Build](https://img.shields.io/badge/build-passing-%2393bb51.svg)
 
 ## About
