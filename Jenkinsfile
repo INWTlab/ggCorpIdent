@@ -15,9 +15,9 @@ pipeline {
             when { not { branch 'depl' } }
             steps {
                 sh '''
-                docker build --pull -t tmp-$CUR_PROJ .
-                docker run --rm --network host tmp-$CUR_PROJ check
-                docker rmi tmp-$CUR_PROJ
+##                docker build --pull -t tmp-$CUR_PROJ .
+##                docker run --rm --network host tmp-$CUR_PROJ check
+##                docker rmi tmp-$CUR_PROJ
                 '''
             }
         }
