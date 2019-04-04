@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggCorpIdent.R
 \name{ggplot}
 \alias{ggplot}
-\title{INWT-specific ggplot function}
+\title{Custom ggplot function}
 \usage{
 ggplot(..., logo = getOption("ggCorpIdentLogoFilename"),
   logoParams = list())
@@ -10,13 +10,12 @@ ggplot(..., logo = getOption("ggCorpIdentLogoFilename"),
 \arguments{
 \item{...}{arguments to be passed to \code{\link[ggplot2]{ggplot}}}
 
-\item{logo}{logical: show INWT logo?}
+\item{logo}{logical: show logo?}
 
 \item{logoParams}{list: arguments passed to \code{\link{addLogo}}}
 }
 \description{
-Works exactly like \code{\link[ggplot2]{ggplot}} but adds INWT
+Works exactly like \code{\link[ggplot2]{ggplot}} but adds a
 logo via \code{\link{addLogo}} by default. If you don't want a logo, use
-\code{logo = FALSE} or (to affect the whole document)
-\code{options(inwt.styles.logo = FALSE)}.
+\code{logo = FALSE}.
 }

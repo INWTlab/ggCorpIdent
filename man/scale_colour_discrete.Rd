@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggCorpIdent.R
 \name{scale_colour_discrete}
 \alias{scale_colour_discrete}
-\title{Evenly spaced INWT colours for discrete data}
+\title{Evenly spaced custom colors for discrete data}
 \usage{
 scale_colour_discrete(...)
 }
@@ -10,5 +10,5 @@ scale_colour_discrete(...)
 \item{...}{arguments passed to \code{\link[ggplot2]{discrete_scale}}}
 }
 \description{
-Default color scale for categorical variables with INWT colors.
+Default color scale for categorical variables with custom colors.
 }

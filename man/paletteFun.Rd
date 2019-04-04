@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggCorpIdent.R
 \name{paletteFun}
 \alias{paletteFun}
-\title{color palette}
+\title{Color palette}
 \usage{
 paletteFun(x)
 }

@@ -55,7 +55,7 @@ list \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"},
 \examples{
 \dontrun{
 library(ggCorpIdent)
-setThemeGgplot2()
+ggCorpIdent()
 
 # default 'ggCorpIdent' settings:
 ggplot(iris,

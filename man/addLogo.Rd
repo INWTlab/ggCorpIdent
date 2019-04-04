@@ -2,30 +2,28 @@
 % Please edit documentation in R/ggCorpIdent.R
 \name{addLogo}
 \alias{addLogo}
-\title{Add INWT Logo}
+\title{Add Logo}
 \usage{
 addLogo(position = getOption("ggCorpIdentLogoPosition"), alpha = 0.1,
   size = getOption("ggCorpIdentLogoSize"))
 }
 \arguments{
-\item{position}{character; Position des Logos (s. Details)}
+\item{position}{character; position of the logo (see details)}
 
-\item{alpha}{numeric; Transparenz (s. \code{\link[grDevices]{rgb}})}
+\item{alpha}{numeric; transparency of the logo (see \code{\link[grDevices]{rgb}})}
 
-\item{size}{numeric; Werte zwischen [0; 1]. Ein Wert von 1 entspricht der
-maximal möglichen Ausdehung, so dass sich das Logo (inkl. etwas Rand) über den
-maximalen Bereich der Grafik erstreckt, ohne abgeschnitten zu werden.}
+\item{size}{numeric; values between [0; 1]. A value of 1 corresponds to the
+maximum possible extension.}
 }
 \description{
-Einbinden des INWT Logos als Wasserzeichen in ggplot Grafiken. \strong{Wichtig:}
-Die Funktion \code{addLogo} sollte direkt im Anschluss an den Aufruf von
-\code{\link[ggplot2]{ggplot}} erfolgen (s. Beispiele), damit das Logo als Layer hinter den Daten
-eingebunden wird und nicht die Daten überlagert.
+Integration of the logo (as watermark or as is) in ggplot graphics. \strong{Important:}
+The function \code{addLogo} should appear immediately after the call to
+\code{\link[ggplot2]{ggplot}} (see examples) to embed the logo layer behind the data
+and to prevent the logo from overlaying the data.
 }
 \details{
 The position may be specified by keywords from the list \code{"default"},
 \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"},
 \code{"topleft"}, \code{"top"}, \code{"topright"}, \code{"right"}, \code{"center"}
 and \code{"full"}. Setting \code{"full"} corresponds to \code{addLogo(position = "full", size = 1)}.
-\code{"deafult")} ist die Verwendung des Logos wie auf der Vorderseite unserer Visitenkarten.
 }

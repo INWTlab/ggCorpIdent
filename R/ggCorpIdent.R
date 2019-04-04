@@ -24,7 +24,7 @@
 #' @examples
 #' \dontrun{
 #' library(ggCorpIdent)
-#' setThemeGgplot2()
+#' ggCorpIdent()
 #'
 #' # default 'ggCorpIdent' settings:
 #' ggplot(iris,
@@ -171,9 +171,9 @@ ggCorpIdent <- function(base_size = 12,
 }
 
 
-#' Evenly spaced INWT colours for discrete data
+#' Evenly spaced custom colors for discrete data
 #'
-#' @description Default color scale for categorical variables with INWT colors.
+#' @description Default color scale for categorical variables with custom colors.
 #' @param ... arguments passed to \code{\link[ggplot2]{discrete_scale}}
 #' @export
 scale_colour_discrete <- function (...) {
@@ -181,9 +181,9 @@ scale_colour_discrete <- function (...) {
 }
 
 
-#' Evenly spaced INWT colours for discrete data
+#' Evenly spaced custom colors for discrete data
 #'
-#' @description Default color scale for categorical variables with INWT colors.
+#' @description Default color scale for categorical variables with custom colors.
 #' @param ... arguments passed to \code{\link[ggplot2]{discrete_scale}}
 #' @export
 scale_fill_discrete <- function (...) {
@@ -191,23 +191,21 @@ scale_fill_discrete <- function (...) {
 }
 
 
-#' Add INWT Logo
-#'
-#' Einbinden des INWT Logos als Wasserzeichen in ggplot Grafiken. \strong{Wichtig:}
-#' Die Funktion \code{addLogo} sollte direkt im Anschluss an den Aufruf von
-#' \code{\link[ggplot2]{ggplot}} erfolgen (s. Beispiele), damit das Logo als Layer hinter den Daten
-#' eingebunden wird und nicht die Daten überlagert.
-#' @param alpha numeric; Transparenz (s. \code{\link[grDevices]{rgb}})
-#' @param position character; Position des Logos (s. Details)
-#' @param size numeric; Werte zwischen [0; 1]. Ein Wert von 1 entspricht der
-#' maximal möglichen Ausdehung, so dass sich das Logo (inkl. etwas Rand) über den
-#' maximalen Bereich der Grafik erstreckt, ohne abgeschnitten zu werden.
+#' Add Logo  
+#' 
+#' Integration of the logo (as watermark or as is) in ggplot graphics. \strong{Important:}
+#' The function \code{addLogo} should appear immediately after the call to
+#' \code{\link[ggplot2]{ggplot}} (see examples) to embed the logo layer behind the data
+#' and to prevent the logo from overlaying the data.
+#' @param alpha numeric; transparency of the logo (see \code{\link[grDevices]{rgb}})
+#' @param position character; position of the logo (see details)
+#' @param size numeric; values between [0; 1]. A value of 1 corresponds to the
+#' maximum possible extension.
 #'
 #' @details The position may be specified by keywords from the list \code{"default"},
 #' \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"},
 #' \code{"topleft"}, \code{"top"}, \code{"topright"}, \code{"right"}, \code{"center"}
 #' and \code{"full"}. Setting \code{"full"} corresponds to \code{addLogo(position = "full", size = 1)}.
-#' \code{"deafult")} ist die Verwendung des Logos wie auf der Vorderseite unserer Visitenkarten.
 addLogo <- function(position = getOption("ggCorpIdentLogoPosition"),
                     alpha = 0.1,
                     size = getOption("ggCorpIdentLogoSize")){
@@ -270,14 +268,13 @@ addLogo <- function(position = getOption("ggCorpIdentLogoPosition"),
 }
 
 
-#' INWT-specific ggplot function
+#' Custom ggplot function
 #'
-#' @description Works exactly like \code{\link[ggplot2]{ggplot}} but adds INWT
+#' @description Works exactly like \code{\link[ggplot2]{ggplot}} but adds a
 #' logo via \code{\link{addLogo}} by default. If you don't want a logo, use
-#' \code{logo = FALSE} or (to affect the whole document)
-#' \code{options(inwt.styles.logo = FALSE)}.
+#' \code{logo = FALSE}.
 #' @param ... arguments to be passed to \code{\link[ggplot2]{ggplot}}
-#' @param logo logical: show INWT logo?
+#' @param logo logical: show logo?
 #' @param logoParams list: arguments passed to \code{\link{addLogo}}
 #' @export
 ggplot <- function(...,
