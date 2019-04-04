@@ -28,8 +28,9 @@ pipeline {
             steps {
                 sh '''
                 rm -vf *.tar.gz
-                docker pull inwt/r-batch:3.5.1
-                docker run --rm --network host -v $PWD:/app --user `id -u`:`id -g` inwt/r-batch:3.5.1 R CMD build $CUR_PKG_FOLDER
+                docker build --pull -t tmp-$CUR_PROJ .
+                docker run --rm --network host -v $PWD:/app --user `id -u`:`id -g` tmp-$CUR_PROJ R CMD build .
+                docker rmi tmp-$CUR_PROJ
                 R -e "drat::insertPackage('`echo $CUR_PKG`_`grep -E '^Version:[ \t]*[0-9.]{3,10}' $CUR_PKG_FOLDER/DESCRIPTION | awk '{print $2}'`.tar.gz', '/var/www/html/r-repo'); drat::archivePackages(repopath = '/var/www/html/r-repo')"
                 '''
             }
