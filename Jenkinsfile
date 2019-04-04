@@ -4,7 +4,7 @@ pipeline {
     agent none
     options { disableConcurrentBuilds() }
     environment {
-        CUR_PROJ = 'ggCorpIdent' // github repo name
+        CUR_PROJ = 'ggcorpident' // github repo name
         CUR_PKG = 'ggCorpIdent' // r-package name
         CUR_PKG_FOLDER = '.' // defaults to root
     }
