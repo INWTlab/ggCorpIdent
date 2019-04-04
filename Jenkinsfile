@@ -15,8 +15,9 @@ pipeline {
             when { not { branch 'depl' } }
             steps {
                 sh '''
-                docker pull inwt/r-batch:3.5.1
-                docker run --rm --network host -v $PWD:/app --user `id -u`:`id -g` inwt/r-batch:3.5.1 check
+                docker build --pull -t tmp-$CUR_PROJ .
+                docker run --rm --network host tmp-$CUR_PROJ check
+                docker rmi tmp-$CUR_PROJ
                 '''
             }
         }
